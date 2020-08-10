@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Open source password generator">
+        <meta name="keywords" content="open source, password generator, mobile, desktop">
+        <meta name="author" content="IMNOTIKE">
+        <title>IMNOTIKE's open source password generator</title>
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+        <body>
+            <header>
+                <div class="container">
+                    <div id="branding">
+                        <h1><span class="higlight">IMNOTIKE</span>  Open source password generator</h1>
+                    </div>
+                    <nav>
+                        <ul>
+                            <li class="current"><a href="index.html"> HOME</a></li>
+                            <li><a href="feedback.html">FEEDBACK</a></li>
+                            <li><a href="help.html">HELP</a></li>
+                            <li><a href="download.html">DOWNLOAD</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+        <section id="showcase">
+            <div class="container">
+                <h1>Free open source password generator</h1>
+                <p>A simple random password generator capable of generating sequences with number, uppercase letter and special characters in different combinations</p>
+            </div>
+        </section>
+        <section id="boxes">
+            <div class="container">
+                <div class="box">
+                    <img src=".\img\download.jpg">
+                    <h3>Open source initiative</h3>
+                    <p>We are proud to launch our project as community based</p>
+                </div>
+                <div class="box">
+                    <img src=".\img\desktop.jpg">
+                    <h3>Desktop app</h3>
+                    <p>We provide a desktop app developed in Java using different graphic libraries</p>
+                </div>
+                <div class="box">
+                    <img src=".\img\mobile.jpeg">
+                    <h3>Mobile android app</h3>
+                    <p>We provide an android Java based version of our app</p>
+                </div>
+            </div>
+        </section>
+        <section id="newsletter">
+            <div class="container">
+                <h1>Subscribe to our newsletter</h1>
+                <form action="/subscribe" method="POST">
+                    <input type="email" id="email" placeholder="Enter email..." pattern=".+@gmail.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                    <input type="submit" value="Subscribe" class="button_1" id="sub">Subscribe</button>
+                </form>
+            </div>
+        </section>
+        <footer><p>IMNOTIKE Java Developer team, Copiright &copy; 2020</p></footer>
+        <script>
+            let sub = document.getElementById('sub');
+            let email = document.getElementById('email').value;
+            
+            sub.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                if(this.email.value == null || this.email.value == ""){
+                    let eroor = 'Please enter an email adress'
+                    email.value = (eroor);
+                }else{
+                    let fetchData = {
+                        method: 'POST',
+                        body: JSON.stringify({email: this.email.value, js: true}),
+                        headers: {"Content-Type": "application/json"}
+                    }
+                    fetch('/subscribe', fetchData)
+                        .then( res => {
+                            if(res.ok){
+                                const done = 'You are succesfully subscribed';
+                                email.value(done);
+                            }else{
+                                email.value = (eroor);
+                            }
+                        })
+                }
+            })
+        </script>
+    </body>
+</html>
